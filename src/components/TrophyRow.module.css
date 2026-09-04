@@ -1,0 +1,125 @@
+.fila {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  background: var(--niebla);
+  border: 1px solid var(--humo);
+  border-left: 3px solid var(--humo);
+  border-radius: var(--radio);
+}
+
+.desbloqueado {
+  background: color-mix(in srgb, var(--niebla) 85%, var(--laton) 15%);
+}
+
+.cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chip {
+  align-self: flex-start;
+  font-size: var(--fs--1);
+  letter-spacing: 0.03em;
+  border: 1px solid;
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+.titulo {
+  font-size: var(--fs-1);
+  color: var(--papel);
+}
+
+.descripcion {
+  font-size: var(--fs--1);
+  color: var(--apagado);
+}
+
+.contadorTexto {
+  font-size: var(--fs--1);
+  font-variant-numeric: tabular-nums;
+  color: var(--apagado);
+}
+
+.controles {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.toggle {
+  flex: 1 0 100%;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radio);
+  border: 1px solid var(--laton);
+  background: transparent;
+  color: var(--laton);
+  font-size: var(--fs-0);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.toggle[aria-pressed='true'] {
+  background: var(--laton);
+  color: var(--tinta);
+}
+
+.toggle:active {
+  opacity: 0.85;
+}
+
+.contador {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input {
+  width: 4em;
+  min-height: var(--toque-min);
+  background: var(--tinta);
+  border: 1px solid var(--humo);
+  border-radius: var(--radio);
+  color: var(--papel);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.selloExpediente {
+  font-family: var(--fuente-titular);
+  color: var(--sangre);
+  border: 1px solid var(--sangre);
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: var(--fs--1);
+  letter-spacing: 0.04em;
+}
+
+.acciones {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.accionMenor {
+  min-height: var(--toque-min);
+  padding: 0 10px;
+  background: transparent;
+  border: none;
+  color: var(--apagado);
+  font-size: var(--fs--1);
+  cursor: pointer;
+}
+
+.accionMenor:active {
+  color: var(--papel);
+}

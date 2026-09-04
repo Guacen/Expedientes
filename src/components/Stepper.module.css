@@ -1,0 +1,31 @@
+.stepper {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid var(--humo);
+  border-radius: var(--radio);
+  overflow: hidden;
+}
+
+.boton {
+  min-width: var(--toque-min);
+  min-height: var(--toque-min);
+  background: var(--niebla);
+  border: none;
+  color: var(--papel);
+  font-size: var(--fs-2);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.boton:disabled {
+  color: var(--apagado);
+  cursor: default;
+}
+
+.boton:active:not(:disabled) {
+  background: var(--humo);
+}
+
+.boton + .boton {
+  border-left: 1px solid var(--humo);
+}

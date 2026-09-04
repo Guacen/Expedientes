@@ -1,0 +1,31 @@
+.nav {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  border-top: 1px solid var(--humo);
+  background: var(--niebla);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--nav-altura);
+  min-width: var(--toque-min);
+  text-decoration: none;
+  color: var(--apagado);
+  font-size: var(--fs--1);
+  letter-spacing: 0.02em;
+  border-top: 2px solid transparent;
+}
+
+.item:active {
+  background: var(--humo);
+}
+
+.activo {
+  color: var(--papel);
+  border-top-color: var(--laton);
+}

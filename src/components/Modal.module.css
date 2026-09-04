@@ -1,0 +1,41 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 27, 33, 0.72);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 100;
+  animation: aparecer 180ms ease;
+}
+
+.panel {
+  width: 100%;
+  max-width: 480px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--niebla);
+  border: 1px solid var(--humo);
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+  animation: subir 220ms ease;
+}
+
+.titulo {
+  font-size: var(--fs-2);
+  margin-bottom: 12px;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes subir {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+}

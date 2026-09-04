@@ -1,0 +1,43 @@
+.mensaje {
+  color: var(--apagado);
+  line-height: var(--lh-texto);
+  margin-bottom: 20px;
+}
+
+.acciones {
+  display: flex;
+  gap: 12px;
+}
+
+.cancelar,
+.confirmar,
+.confirmarPeligroso {
+  flex: 1;
+  min-height: var(--toque-min);
+  border-radius: var(--radio);
+  font-size: var(--fs-0);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancelar {
+  background: transparent;
+  border: 1px solid var(--humo);
+  color: var(--papel);
+}
+
+.cancelar:active {
+  background: var(--humo);
+}
+
+.confirmar {
+  background: var(--laton);
+  border: 1px solid var(--laton);
+  color: var(--tinta);
+}
+
+.confirmarPeligroso {
+  background: var(--sangre);
+  border: 1px solid var(--sangre);
+  color: var(--papel);
+}
