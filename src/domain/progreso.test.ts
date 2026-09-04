@@ -5,6 +5,7 @@ import {
   calcularNivel,
   calcularPorcentajeJuego,
   calcularXP,
+  conCambios,
   conNuevoValor,
   estaDesbloqueado,
   recalcularExpediente,
@@ -54,6 +55,20 @@ describe('Regla 1: el desbloqueo es derivado', () => {
     const desbloqueado = trofeo({ tipo: 'contador', meta: 100, valorActual: 100, desbloqueadoEn: primeraFecha });
     const actualizado = conNuevoValor(desbloqueado, 150, AHORA);
     expect(actualizado.desbloqueadoEn).toBe(primeraFecha);
+  });
+
+  it('conCambios sella desbloqueadoEn si un cambio de meta cruza el umbral', () => {
+    const t = trofeo({ tipo: 'contador', meta: 18, valorActual: 15 });
+    const actualizado = conCambios(t, { meta: 13 }, AHORA);
+    expect(actualizado.valorActual).toBe(15);
+    expect(actualizado.meta).toBe(13);
+    expect(actualizado.desbloqueadoEn).toBe(AHORA);
+  });
+
+  it('conCambios limpia desbloqueadoEn si un cambio saca al trofeo del umbral', () => {
+    const t = trofeo({ tipo: 'contador', meta: 10, valorActual: 12, desbloqueadoEn: AHORA });
+    const actualizado = conCambios(t, { meta: 20 }, AHORA);
+    expect(actualizado.desbloqueadoEn).toBeUndefined();
   });
 
   it('alternarBinario alterna entre 0 y meta', () => {

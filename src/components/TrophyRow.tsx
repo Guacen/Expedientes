@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { Trophy } from '../types';
 import { estaDesbloqueado } from '../domain/progreso';
 import { DIFICULTADES } from '../domain/dificultades';
@@ -19,6 +20,7 @@ export default function TrophyRow({
   onEditar,
   onBorrar,
 }: TrophyRowProps) {
+  const [guiaAbierta, setGuiaAbierta] = useState(false);
   const desbloqueado = estaDesbloqueado(trofeo);
   const esExpediente = trofeo.dificultad === 4;
   const oculto = trofeo.oculto && !desbloqueado;
@@ -36,6 +38,24 @@ export default function TrophyRow({
         </span>
         <h4 className={styles.titulo}>{oculto ? '???' : trofeo.titulo}</h4>
         {!oculto && trofeo.descripcion && <p className={styles.descripcion}>{trofeo.descripcion}</p>}
+        {!oculto && trofeo.guia && (
+          <div className={styles.guiaBloque}>
+            <button
+              type="button"
+              className={styles.guiaToggle}
+              aria-expanded={guiaAbierta}
+              onClick={() => setGuiaAbierta((v) => !v)}
+            >
+              {guiaAbierta ? 'Ocultar guía' : 'Ver guía'}
+            </button>
+            {guiaAbierta && (
+              <div className={styles.guia}>
+                <span className={styles.guiaEtiqueta}>Guía</span>
+                <p className={styles.guiaTexto}>{trofeo.guia}</p>
+              </div>
+            )}
+          </div>
+        )}
         {!esExpediente && trofeo.tipo === 'contador' && (
           <p className={styles.contadorTexto}>
             {trofeo.valorActual} / {trofeo.meta}

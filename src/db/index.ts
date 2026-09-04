@@ -1,6 +1,7 @@
 import Dexie, { type Table } from 'dexie';
 import type { Game, PlantillaCatalogo, Trophy } from '../types';
-import { alternarBinario, conNuevoValor, recalcularExpediente } from '../domain/progreso';
+import { alternarBinario, conCambios, conNuevoValor, recalcularExpediente } from '../domain/progreso';
+import { calcularDiffActualizacion } from '../domain/catalogo';
 
 class ExpedientesDB extends Dexie {
   games!: Table<Game, string>;
@@ -9,6 +10,11 @@ class ExpedientesDB extends Dexie {
   constructor() {
     super('expedientes');
     this.version(1).stores({
+      games: 'id, estado, plataforma',
+      trophies: 'id, gameId, dificultad, desbloqueadoEn',
+    });
+    // v2: agrega Trophy.guia (no indexada) — migración vacía, no hay nada que transformar.
+    this.version(2).stores({
       games: 'id, estado, plataforma',
       trophies: 'id, gameId, dificultad, desbloqueadoEn',
     });
@@ -85,7 +91,10 @@ export async function crearTrofeo(datos: DatosNuevoTrofeo): Promise<Trophy> {
 }
 
 export type CambiosTrofeo = Partial<
-  Pick<Trophy, 'titulo' | 'descripcion' | 'dificultad' | 'tipo' | 'meta' | 'oculto' | 'orden'>
+  Pick<
+    Trophy,
+    'titulo' | 'descripcion' | 'guia' | 'dificultad' | 'tipo' | 'meta' | 'oculto' | 'orden'
+  >
 >;
 
 export async function actualizarTrofeo(id: string, cambios: CambiosTrofeo): Promise<void> {
@@ -94,7 +103,8 @@ export async function actualizarTrofeo(id: string, cambios: CambiosTrofeo): Prom
   if (trofeo.dificultad === 4) {
     throw new Error('El Expediente Cerrado no se puede editar.');
   }
-  await db.trophies.update(id, cambios);
+  const actualizado = conCambios(trofeo, cambios, ahora());
+  await db.trophies.put(actualizado);
   await recalcularExpedienteDeJuego(trofeo.gameId);
 }
 
@@ -159,6 +169,42 @@ export async function importarPlantilla(plantilla: PlantillaCatalogo): Promise<G
     await crearTrofeo({ gameId: juego.id, orden, ...trofeo });
   }
   return juego;
+}
+
+/**
+ * Aplica a un juego ya existente el diff de calcularDiffActualizacion: actualiza los
+ * trofeos que cambiaron, borra los que ya no están en la plantilla y crea los nuevos.
+ * Reutiliza actualizarTrofeo/borrarTrofeo/crearTrofeo tal cual — cada uno ya recalcula
+ * el Expediente por su cuenta.
+ */
+export async function actualizarJuegoDesdeCatalogo(
+  gameId: string,
+  plantilla: PlantillaCatalogo,
+): Promise<void> {
+  const trofeosExistentes = (await db.trophies.where('gameId').equals(gameId).toArray()).filter(
+    (t): t is Trophy & { dificultad: 1 | 2 | 3 } => t.dificultad !== 4,
+  );
+  const diff = calcularDiffActualizacion(plantilla, trofeosExistentes);
+
+  const siguienteOrden: Record<1 | 2 | 3, number> = { 1: 0, 2: 0, 3: 0 };
+  for (const t of trofeosExistentes) siguienteOrden[t.dificultad]++;
+
+  for (const cambio of diff.cambiados) {
+    await actualizarTrofeo(cambio.existente.id, {
+      descripcion: cambio.plantilla.descripcion,
+      guia: cambio.plantilla.guia,
+      dificultad: cambio.plantilla.dificultad,
+      tipo: cambio.plantilla.tipo,
+      meta: cambio.plantilla.meta,
+      oculto: cambio.plantilla.oculto,
+    });
+  }
+  for (const trofeo of diff.eliminados) {
+    await borrarTrofeo(trofeo.id);
+  }
+  for (const trofeo of diff.nuevos) {
+    await crearTrofeo({ gameId, orden: siguienteOrden[trofeo.dificultad]++, ...trofeo });
+  }
 }
 
 // --- Respaldo -------------------------------------------------------------

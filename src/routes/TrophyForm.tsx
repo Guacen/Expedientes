@@ -9,6 +9,7 @@ import styles from './TrophyForm.module.css';
 interface FormularioTrofeo {
   titulo: string;
   descripcion: string;
+  guia: string;
   dificultad: 1 | 2 | 3;
   tipo: TipoTrofeo;
   meta: string;
@@ -18,6 +19,7 @@ interface FormularioTrofeo {
 const VACIO: FormularioTrofeo = {
   titulo: '',
   descripcion: '',
+  guia: '',
   dificultad: 1,
   tipo: 'binario',
   meta: '1',
@@ -43,6 +45,7 @@ export default function TrophyForm() {
       setForm({
         titulo: trofeoExistente.titulo,
         descripcion: trofeoExistente.descripcion ?? '',
+        guia: trofeoExistente.guia ?? '',
         dificultad: trofeoExistente.dificultad === 4 ? 1 : trofeoExistente.dificultad,
         tipo: trofeoExistente.tipo,
         meta: String(trofeoExistente.meta),
@@ -66,6 +69,7 @@ export default function TrophyForm() {
         await actualizarTrofeo(trophyId, {
           titulo: form.titulo.trim(),
           descripcion: form.descripcion.trim() || undefined,
+          guia: form.guia.trim() || undefined,
           dificultad: form.dificultad,
           tipo: form.tipo,
           meta,
@@ -81,6 +85,7 @@ export default function TrophyForm() {
           gameId,
           titulo: form.titulo.trim(),
           descripcion: form.descripcion.trim() || undefined,
+          guia: form.guia.trim() || undefined,
           dificultad: form.dificultad,
           tipo: form.tipo,
           meta,
@@ -124,6 +129,15 @@ export default function TrophyForm() {
             rows={3}
             value={form.descripcion}
             onChange={(evento) => actualizarCampo('descripcion', evento.target.value)}
+          />
+        </label>
+
+        <label className={styles.campo}>
+          <span>Guía (opcional) — cuándo marcarlo exactamente</span>
+          <textarea
+            rows={3}
+            value={form.guia}
+            onChange={(evento) => actualizarCampo('guia', evento.target.value)}
           />
         </label>
 

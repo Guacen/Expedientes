@@ -1,4 +1,11 @@
-import { PLATAFORMAS, ESTADOS_JUEGO, type Game, type PlantillaCatalogo, type PlantillaTrofeo } from '../types';
+import {
+  PLATAFORMAS,
+  ESTADOS_JUEGO,
+  type Game,
+  type PlantillaCatalogo,
+  type PlantillaTrofeo,
+  type Trophy,
+} from '../types';
 
 export type ResultadoValidacion =
   | { valida: true; plantilla: PlantillaCatalogo }
@@ -104,6 +111,9 @@ function validarTrofeo(t: unknown, indice: number): ResultadoTrofeo {
   if (r.descripcion !== undefined && typeof r.descripcion !== 'string') {
     return { valido: false, error: `${nombre}: "descripcion" debe ser texto.` };
   }
+  if (r.guia !== undefined && typeof r.guia !== 'string') {
+    return { valido: false, error: `${nombre}: "guia" debe ser texto.` };
+  }
 
   return {
     valido: true,
@@ -111,6 +121,7 @@ function validarTrofeo(t: unknown, indice: number): ResultadoTrofeo {
       titulo: r.titulo.trim(),
       descripcion:
         typeof r.descripcion === 'string' && r.descripcion.trim() ? r.descripcion.trim() : undefined,
+      guia: typeof r.guia === 'string' && r.guia.trim() ? r.guia.trim() : undefined,
       dificultad: r.dificultad as 1 | 2 | 3,
       tipo: r.tipo as 'binario' | 'contador',
       meta: r.meta,
@@ -119,10 +130,85 @@ function validarTrofeo(t: unknown, indice: number): ResultadoTrofeo {
   };
 }
 
-/** Un juego se considera "ya en la biblioteca" si coincide título y plataforma. */
-export function yaEnBiblioteca(plantilla: PlantillaCatalogo, juegos: Game[]): boolean {
+/** Encuentra, si existe, el juego de la biblioteca que coincide en título y plataforma. */
+export function buscarJuegoCoincidente(plantilla: PlantillaCatalogo, juegos: Game[]): Game | undefined {
   const clave = (titulo: string, plataforma: string) =>
     `${titulo.trim().toLowerCase()}|${plataforma.trim().toLowerCase()}`;
   const objetivo = clave(plantilla.juego.titulo, plantilla.juego.plataforma);
-  return juegos.some((j) => clave(j.titulo, j.plataforma) === objetivo);
+  return juegos.find((j) => clave(j.titulo, j.plataforma) === objetivo);
+}
+
+// --- Actualizar desde el catálogo -------------------------------------------
+
+export interface CambioTrofeo {
+  existente: Trophy;
+  plantilla: PlantillaTrofeo;
+  /** Etiquetas legibles de qué cambió, p.ej. "meta: 18 → 13". */
+  campos: string[];
+}
+
+export interface DiffActualizacion {
+  nuevos: PlantillaTrofeo[];
+  cambiados: CambioTrofeo[];
+  eliminados: Trophy[];
+  sinCambios: number;
+}
+
+/**
+ * Compara una plantilla contra los trofeos 1-3 que ya tiene un juego (sin el
+ * Expediente Cerrado) y calcula qué cambiaría al actualizar. El match es solo por
+ * título: un trofeo renombrado se ve como uno eliminado + uno nuevo, nunca como
+ * "cambiado" — no se intenta migrar progreso entre títulos distintos.
+ */
+export function calcularDiffActualizacion(
+  plantilla: PlantillaCatalogo,
+  trofeosExistentes: Trophy[],
+): DiffActualizacion {
+  const porTitulo = new Map(trofeosExistentes.map((t) => [t.titulo.trim(), t]));
+  const titulosPlantilla = new Set(plantilla.trofeos.map((t) => t.titulo.trim()));
+
+  const nuevos: PlantillaTrofeo[] = [];
+  const cambiados: CambioTrofeo[] = [];
+  let sinCambios = 0;
+
+  for (const trofeoPlantilla of plantilla.trofeos) {
+    const existente = porTitulo.get(trofeoPlantilla.titulo.trim());
+    if (!existente) {
+      nuevos.push(trofeoPlantilla);
+      continue;
+    }
+    const campos = compararTrofeo(existente, trofeoPlantilla);
+    if (campos.length > 0) {
+      cambiados.push({ existente, plantilla: trofeoPlantilla, campos });
+    } else {
+      sinCambios++;
+    }
+  }
+
+  const eliminados = trofeosExistentes.filter((t) => !titulosPlantilla.has(t.titulo.trim()));
+
+  return { nuevos, cambiados, eliminados, sinCambios };
+}
+
+function compararTrofeo(existente: Trophy, plantilla: PlantillaTrofeo): string[] {
+  const campos: string[] = [];
+  if ((existente.descripcion ?? '') !== (plantilla.descripcion ?? '')) {
+    campos.push('descripción');
+  }
+  if (existente.dificultad !== plantilla.dificultad) {
+    campos.push(`dificultad: ${existente.dificultad} → ${plantilla.dificultad}`);
+  }
+  if (existente.tipo !== plantilla.tipo) {
+    campos.push(`tipo: ${existente.tipo} → ${plantilla.tipo}`);
+  }
+  if (existente.meta !== plantilla.meta) {
+    campos.push(`meta: ${existente.meta} → ${plantilla.meta}`);
+  }
+  if (existente.oculto !== plantilla.oculto) {
+    campos.push(plantilla.oculto ? 'ahora oculto' : 'ya no oculto');
+  }
+  if ((existente.guia ?? '') !== (plantilla.guia ?? '')) {
+    campos.push('guía');
+  }
+  return campos;
 }
