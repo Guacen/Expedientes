@@ -19,7 +19,7 @@ Abre la URL que imprime Vite (por defecto `http://localhost:5173/expedientes/`).
 Otros comandos:
 
 ```bash
-npm run test     # tests de Vitest sobre las reglas de dominio (src/domain/progreso.ts)
+npm run test     # tests de Vitest sobre las reglas de dominio y la validación del catálogo
 npm run build    # typecheck + build de producción en dist/
 npm run preview  # sirve dist/ localmente para probar el build
 ```
@@ -54,16 +54,58 @@ src/
   db/index.ts            esquema Dexie y helpers de acceso/orquestación
   domain/progreso.ts      reglas puras + tests (Vitest)
   domain/dificultades.ts  constante de niveles, puntos y colores
-  types/index.ts          Game, Trophy y tipos asociados
+  domain/catalogo.ts      validación de plantillas + tests (Vitest)
+  catalogo/                *.json del catálogo + cargador (import.meta.glob)
+  types/index.ts          Game, Trophy, PlantillaCatalogo y tipos asociados
   components/             ProgressRing, GameCard, TrophyRow, Stepper, Modal, ConfirmDialog, BottomNav
-  routes/                 Library, GameDetail, GameForm, TrophyForm, Settings
+  routes/                 Library, Catalog, AddGame, GameDetail, GameForm, TrophyForm, Settings
   styles/tokens.css       paleta, tipografía, resets
 ```
 
-## Alcance de esta fase (Fase 1)
+## Añadir un juego al catálogo
+
+El catálogo (`/catalogo` en la app) es una lista de plantillas ya redactadas: se
+importan de una y arman el juego completo con todos sus trofeos y su Expediente
+Cerrado. No hay red ni backend — las plantillas viajan empaquetadas en el build.
+
+Para añadir una, crea un archivo en `src/catalogo/` con esta forma (mira
+`src/catalogo/botw.json` como ejemplo completo):
+
+```json
+{
+  "version": 1,
+  "juego": {
+    "titulo": "Nombre del juego",
+    "plataforma": "Switch",
+    "estado": "backlog"
+  },
+  "trofeos": [
+    {
+      "titulo": "Título del trofeo",
+      "descripcion": "Opcional.",
+      "dificultad": 1,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    }
+  ]
+}
+```
+
+Reglas: nunca lleva `id` ni fechas (la app los genera), nunca lleva el trofeo de
+dificultad 4 (el Expediente Cerrado se arma solo), `dificultad` va de 1 a 3, y los
+binarios siempre tienen `meta: 1`. Guarda el archivo y haz commit — aparece en el
+catálogo sin tocar más código.
+
+Si no quieres esperar a un despliegue, en **Ajustes → Importar plantilla desde texto**
+puedes pegar el mismo JSON directamente; se valida igual y crea el juego al instante.
+
+## Alcance de esta fase (Fase 1 + catálogo)
 
 Biblioteca con filtro por estado, alta/edición/borrado de juegos y trofeos, detalle de
 juego con trofeos agrupados por dificultad, el Expediente Cerrado que se abre y cierra
-solo, y respaldo manual por JSON (exportar/importar con confirmación). No incluye
-integración con IGDB, generación de trofeos por IA, timeline, pantalla de perfil,
-sonidos, animaciones de desbloqueo, estadísticas ni sincronización.
+solo, respaldo manual por JSON (exportar/importar con confirmación), y un catálogo de
+plantillas para armar juegos completos de una vez (desde archivos empaquetados o
+pegando el JSON en Ajustes). No incluye integración con IGDB, generación de trofeos por
+IA, descarga de plantillas desde una URL, timeline, pantalla de perfil, sonidos,
+animaciones de desbloqueo, estadísticas ni sincronización.

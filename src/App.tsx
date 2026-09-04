@@ -2,6 +2,8 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 import BottomNav from './components/BottomNav';
 import styles from './App.module.css';
 import Library from './routes/Library';
+import Catalog from './routes/Catalog';
+import AddGame from './routes/AddGame';
 import GameDetail from './routes/GameDetail';
 import GameForm from './routes/GameForm';
 import TrophyForm from './routes/TrophyForm';
@@ -13,7 +15,9 @@ export default function App() {
       <main className={styles.main}>
         <Routes>
           <Route path="/" element={<Library />} />
-          <Route path="/juegos/nuevo" element={<GameForm />} />
+          <Route path="/catalogo" element={<Catalog />} />
+          <Route path="/juegos/nuevo" element={<AddGame />} />
+          <Route path="/juegos/nuevo/en-blanco" element={<GameForm />} />
           <Route path="/juegos/:gameId" element={<GameDetail />} />
           <Route path="/juegos/:gameId/editar" element={<GameForm />} />
           <Route path="/juegos/:gameId/trofeos/nuevo" element={<TrophyForm />} />

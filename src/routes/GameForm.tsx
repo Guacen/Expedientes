@@ -2,23 +2,8 @@ import { type FormEvent, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db, crearJuego, actualizarJuego, type DatosNuevoJuego } from '../db';
-import type { EstadoJuego, Plataforma } from '../types';
+import { PLATAFORMAS, type EstadoJuego, type Plataforma } from '../types';
 import styles from './GameForm.module.css';
-
-const PLATAFORMAS: Plataforma[] = [
-  'Switch',
-  'Switch 2',
-  '3DS',
-  'Wii U',
-  'Wii',
-  'GameCube',
-  'N64',
-  'SNES',
-  'NES',
-  'Game Boy',
-  'DS',
-  'Otra',
-];
 
 const ESTADOS: { valor: EstadoJuego; etiqueta: string }[] = [
   { valor: 'backlog', etiqueta: 'Backlog' },
@@ -207,7 +192,10 @@ export default function GameForm() {
         </label>
 
         <div className={styles.acciones}>
-          <Link to={esEdicion && gameId ? `/juegos/${gameId}` : '/'} className={styles.cancelar}>
+          <Link
+            to={esEdicion && gameId ? `/juegos/${gameId}` : '/juegos/nuevo'}
+            className={styles.cancelar}
+          >
             Cancelar
           </Link>
           <button type="submit" className={styles.guardar} disabled={enviando}>

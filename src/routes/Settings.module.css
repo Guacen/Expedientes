@@ -28,6 +28,18 @@
   font-size: var(--fs--1);
 }
 
+.textarea {
+  min-height: 120px;
+  padding: 10px;
+  background: var(--tinta);
+  border: 1px solid var(--humo);
+  border-radius: var(--radio);
+  color: var(--papel);
+  font-family: var(--fuente-interfaz);
+  font-size: var(--fs--1);
+  resize: vertical;
+}
+
 .boton {
   align-self: flex-start;
   min-height: var(--toque-min);

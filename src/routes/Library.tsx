@@ -58,7 +58,7 @@ export default function Library() {
           <p className={styles.vacioTexto}>
             Añade tu primer juego y su Expediente Cerrado se abrirá solo.
           </p>
-          <Link to="/juegos/nuevo" className={styles.vacioBoton}>
+          <Link to="/catalogo" className={styles.vacioBoton}>
             Añadir el primer juego
           </Link>
         </div>
