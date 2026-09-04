@@ -38,6 +38,46 @@
   color: var(--apagado);
 }
 
+.guiaBloque {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.guiaToggle {
+  min-height: 32px;
+  padding: 0 2px;
+  background: transparent;
+  border: none;
+  color: var(--laton);
+  font-size: var(--fs--1);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.guia {
+  border-left: 2px solid var(--laton);
+  padding: 2px 0 2px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.guiaEtiqueta {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--laton);
+}
+
+.guiaTexto {
+  font-size: var(--fs--1);
+  font-style: italic;
+  color: var(--apagado);
+}
+
 .contadorTexto {
   font-size: var(--fs--1);
   font-variant-numeric: tabular-nums;

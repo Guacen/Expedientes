@@ -7,13 +7,13 @@ export function estaDesbloqueado(t: Pick<Trophy, 'valorActual' | 'meta'>): boole
 }
 
 /**
- * Aplica un nuevo valorActual a un trofeo. Sella desbloqueadoEn la primera vez que
- * cruza la meta, y lo limpia si vuelve a caer por debajo. Si el estado de desbloqueo
- * no cambia, desbloqueadoEn queda intacto (no se resella).
+ * Regla 1, generalizada: aplica cualquier cambio a un trofeo (valorActual, meta, u
+ * otros campos) y resella/limpia desbloqueadoEn según corresponda. Si el estado de
+ * desbloqueo no cambia, desbloqueadoEn queda intacto (no se resella).
  */
-export function conNuevoValor(trophy: Trophy, valorActual: number, ahora: string): Trophy {
+export function conCambios(trophy: Trophy, cambios: Partial<Trophy>, ahora: string): Trophy {
   const eraDesbloqueado = estaDesbloqueado(trophy);
-  const actualizado: Trophy = { ...trophy, valorActual };
+  const actualizado: Trophy = { ...trophy, ...cambios };
   const esDesbloqueadoAhora = estaDesbloqueado(actualizado);
 
   if (!eraDesbloqueado && esDesbloqueadoAhora) {
@@ -23,6 +23,11 @@ export function conNuevoValor(trophy: Trophy, valorActual: number, ahora: string
   }
 
   return actualizado;
+}
+
+/** Aplica un nuevo valorActual a un trofeo (caso particular de conCambios). */
+export function conNuevoValor(trophy: Trophy, valorActual: number, ahora: string): Trophy {
+  return conCambios(trophy, { valorActual }, ahora);
 }
 
 /** Alterna un trofeo binario entre bloqueado (0) y desbloqueado (meta). */

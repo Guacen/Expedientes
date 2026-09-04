@@ -57,6 +57,7 @@ export interface Trophy {
   gameId: string;
   titulo: string;
   descripcion?: string;
+  guia?: string; // cuándo/cómo marcarlo, distinto de la descripción
   dificultad: 1 | 2 | 3 | 4;
   tipo: TipoTrofeo;
   meta: number; // 1 si es binario
@@ -75,6 +76,7 @@ export interface Trophy {
 export interface PlantillaTrofeo {
   titulo: string;
   descripcion?: string;
+  guia?: string;
   dificultad: 1 | 2 | 3;
   tipo: TipoTrofeo;
   meta: number;

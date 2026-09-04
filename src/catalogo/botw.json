@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "juego": {
     "titulo": "The Legend of Zelda: Breath of the Wild",
     "plataforma": "Switch",
@@ -8,7 +8,8 @@
   "trofeos": [
     {
       "titulo": "Abre los ojos",
-      "descripcion": "Sal del Santuario de la Resurrección y pisa la Gran Meseta por primera vez.",
+      "descripcion": "Sal del Santuario de la Resurrección y pisa la Gran Meseta.",
+      "guia": "Es lo primero que hace el juego contigo. Márcalo cuando salgas de la cueva inicial y veas Hyrule por primera vez.",
       "dificultad": 1,
       "tipo": "binario",
       "meta": 1,
@@ -16,7 +17,8 @@
     },
     {
       "titulo": "La primera puerta naranja",
-      "descripcion": "Completa tu primer santuario y recibe su símbolo de superación.",
+      "descripcion": "Completa tu primer santuario.",
+      "guia": "Cualquiera de los cuatro de la Gran Meseta sirve. Márcalo cuando el monje te entregue el símbolo de superación.",
       "dificultad": 1,
       "tipo": "binario",
       "meta": 1,
@@ -24,7 +26,8 @@
     },
     {
       "titulo": "Ojos en el cielo",
-      "descripcion": "Activa tu primera torre Sheikah y descubre una región del mapa.",
+      "descripcion": "Activa tu primera torre Sheikah.",
+      "guia": "Sube la torre y toca la terminal con la piedra Sheikah. Márcalo cuando el mapa de esa región se dibuje.",
       "dificultad": 1,
       "tipo": "binario",
       "meta": 1,
@@ -32,7 +35,8 @@
     },
     {
       "titulo": "Caída controlada",
-      "descripcion": "Consigue la paravela y baja de la Gran Meseta por tu cuenta.",
+      "descripcion": "Consigue la paravela y baja de la Gran Meseta.",
+      "guia": "El anciano te la entrega al terminar los cuatro santuarios de la meseta. Márcalo cuando aterrices abajo.",
       "dificultad": 1,
       "tipo": "binario",
       "meta": 1,
@@ -41,6 +45,7 @@
     {
       "titulo": "Algo caliente",
       "descripcion": "Cocina tu primer platillo en una olla.",
+      "guia": "Busca una olla con fuego encendido, sostén los ingredientes y suéltalos dentro. Márcalo cuando salga la animación del plato.",
       "dificultad": 1,
       "tipo": "binario",
       "meta": 1,
@@ -49,6 +54,7 @@
     {
       "titulo": "Un nombre para el caballo",
       "descripcion": "Doma un caballo salvaje y regístralo en un establo.",
+      "guia": "Acércate agachado, móntalo y cálmalo hasta que deje de resistirse. Márcalo cuando pagues el registro y le pongas nombre, no antes.",
       "dificultad": 1,
       "tipo": "binario",
       "meta": 1,
@@ -57,6 +63,7 @@
     {
       "titulo": "Lo que quedó de ti",
       "descripcion": "Recupera tu primer recuerdo.",
+      "guia": "Necesitas la cámara de la piedra Sheikah. Ve al lugar que muestra una de las fotos y márcalo cuando termine la escena.",
       "dificultad": 1,
       "tipo": "binario",
       "meta": 1,
@@ -65,6 +72,7 @@
     {
       "titulo": "Techo y conversación",
       "descripcion": "Llega a Kakariko y habla con Impa.",
+      "guia": "Sigue el camino al este desde la meseta. Márcalo al terminar la conversación con Impa en su casa.",
       "dificultad": 1,
       "tipo": "binario",
       "meta": 1,
@@ -73,6 +81,7 @@
     {
       "titulo": "Trabajo de campo",
       "descripcion": "Completa 15 santuarios.",
+      "guia": "El juego lleva la cuenta por ti: abre el mapa y mira el contador de santuarios completados. Copia ese número aquí cuando quieras.",
       "dificultad": 1,
       "tipo": "contador",
       "meta": 15,
@@ -81,6 +90,7 @@
     {
       "titulo": "Fauna y flora",
       "descripcion": "Registra 100 entradas en el compendio de Hyrule.",
+      "guia": "Fotografía criaturas, materiales, armas y monstruos. El compendio muestra el total registrado en su pantalla principal: copia ese número.",
       "dificultad": 1,
       "tipo": "contador",
       "meta": 100,
@@ -89,6 +99,7 @@
     {
       "titulo": "El agua vuelve a su cauce",
       "descripcion": "Libera la Bestia Divina Vah Ruta.",
+      "guia": "Región de los zora, al noreste. Márcalo al derrotar al enemigo final de la bestia y recibir la bendición de Mipha.",
       "dificultad": 2,
       "tipo": "binario",
       "meta": 1,
@@ -97,6 +108,7 @@
     {
       "titulo": "La montaña deja de arder",
       "descripcion": "Libera la Bestia Divina Vah Rudania.",
+      "guia": "Monte Muerte, tierra de los goron. Necesitas resistencia al fuego antes de subir. Márcalo al recibir la bendición de Daruk.",
       "dificultad": 2,
       "tipo": "binario",
       "meta": 1,
@@ -105,6 +117,7 @@
     {
       "titulo": "El cielo se despeja",
       "descripcion": "Libera la Bestia Divina Vah Medoh.",
+      "guia": "Aldea Orni, al noroeste. Márcalo al recibir la bendición de Revali.",
       "dificultad": 2,
       "tipo": "binario",
       "meta": 1,
@@ -113,6 +126,7 @@
     {
       "titulo": "La tormenta se apaga",
       "descripcion": "Libera la Bestia Divina Vah Naboris.",
+      "guia": "Desierto Gerudo, al suroeste. Márcalo al recibir la bendición de Urbosa.",
       "dificultad": 2,
       "tipo": "binario",
       "meta": 1,
@@ -120,7 +134,8 @@
     },
     {
       "titulo": "La espada que sella las tinieblas",
-      "descripcion": "Retira la Espada Maestra de su pedestal en el Bosque Korok.",
+      "descripcion": "Retira la Espada Maestra de su pedestal en el Bosque Korogu.",
+      "guia": "Necesitas 13 corazones o no podrás sacarla. Cruza el Bosque Perdido siguiendo la dirección en que sopla el humo de las antorchas. Márcalo cuando la espada quede en tu inventario.",
       "dificultad": 2,
       "tipo": "binario",
       "meta": 1,
@@ -129,6 +144,7 @@
     {
       "titulo": "Cartografía completa",
       "descripcion": "Activa las 15 torres Sheikah.",
+      "guia": "Cada región revelada del mapa corresponde a una torre. Cuenta las que ya tienes dibujadas y actualiza el contador cuando actives otra.",
       "dificultad": 2,
       "tipo": "contador",
       "meta": 15,
@@ -137,6 +153,7 @@
     {
       "titulo": "Cincuenta puertas",
       "descripcion": "Completa 50 santuarios.",
+      "guia": "Mismo contador del mapa. No hace falta actualizarlo uno por uno: revísalo cada tanto y copia la cifra.",
       "dificultad": 2,
       "tipo": "contador",
       "meta": 50,
@@ -144,15 +161,17 @@
     },
     {
       "titulo": "Cien años después",
-      "descripcion": "Recupera los 18 recuerdos, incluido el que nadie te señala.",
+      "descripcion": "Recupera los 13 recuerdos capturados.",
+      "guia": "Son las 12 fotos de la piedra Sheikah más uno final que se desbloquea al hallar los otros doce. El diario de aventuras tiene una sección de recuerdos con la cuenta exacta.",
       "dificultad": 2,
       "tipo": "contador",
-      "meta": 18,
+      "meta": 13,
       "oculto": false
     },
     {
       "titulo": "Camino conocido",
       "descripcion": "Visita los 15 establos del reino.",
+      "guia": "Cada establo descubierto queda marcado en el mapa con su icono de caballo. Cuenta los iconos y copia el número.",
       "dificultad": 2,
       "tipo": "contador",
       "meta": 15,
@@ -160,15 +179,17 @@
     },
     {
       "titulo": "Desnudo en la isla",
-      "descripcion": "Supera la prueba de la isla del este sin el equipo que traías.",
+      "descripcion": "Supera la prueba de la isla del sureste sin el equipo que traías.",
+      "guia": "Al llegar te quitan todo el inventario y hay que encender tres altares. Márcalo cuando aparezca el santuario y recuperes tus cosas.",
       "dificultad": 2,
       "tipo": "binario",
       "meta": 1,
       "oculto": false
     },
     {
-      "titulo": "El laberinto del norte",
+      "titulo": "Los tres laberintos",
       "descripcion": "Resuelve los tres laberintos antiguos.",
+      "guia": "Uno al norte, uno en el desierto y uno en la isla del noreste. Sube al techo y usa la paravela: desde arriba se lee el trazado completo. Suma uno cada vez que llegues a su santuario.",
       "dificultad": 2,
       "tipo": "contador",
       "meta": 3,
@@ -177,6 +198,7 @@
     {
       "titulo": "Cuerpo entero",
       "descripcion": "Alcanza 13 corazones y 3 ruedas completas de aguante.",
+      "guia": "Cambia símbolos de superación en las estatuas de la diosa. Márcalo cuando tengas ambas cifras al mismo tiempo, no una y luego la otra.",
       "dificultad": 2,
       "tipo": "binario",
       "meta": 1,
@@ -185,6 +207,7 @@
     {
       "titulo": "Ciento veinte",
       "descripcion": "Completa todos los santuarios del mapa base.",
+      "guia": "Contador del mapa otra vez. Los últimos veinte son los que cuestan: busca en las regiones donde el mapa se ve vacío de iconos naranjas.",
       "dificultad": 3,
       "tipo": "contador",
       "meta": 120,
@@ -192,7 +215,8 @@
     },
     {
       "titulo": "El bosque quiere semillas",
-      "descripcion": "Entrega las 900 semillas korogu. Nadie te va a agradecer como esperabas.",
+      "descripcion": "Entrega las 900 semillas korogu.",
+      "guia": "El inventario de objetos clave muestra cuántas llevas. Nadie espera que las encuentres todas a mano; la recompensa final es una broma del juego y vale la pena verla.",
       "dificultad": 3,
       "tipo": "contador",
       "meta": 900,
@@ -201,6 +225,7 @@
     {
       "titulo": "Todo el papeleo",
       "descripcion": "Completa las 76 misiones secundarias y las 42 pruebas de santuario.",
+      "guia": "El diario de aventuras separa misiones principales, secundarias y pruebas de santuario. Cuenta las completadas de las dos últimas categorías y suma.",
       "dificultad": 3,
       "tipo": "contador",
       "meta": 118,
@@ -209,22 +234,25 @@
     {
       "titulo": "Catálogo cerrado",
       "descripcion": "Registra las 385 entradas del compendio de Hyrule.",
+      "guia": "Si te faltan pocas, el investigador del laboratorio de Hateno vende fotos de las que no tengas. Copia el total del compendio.",
       "dificultad": 3,
       "tipo": "contador",
       "meta": 385,
       "oculto": false
     },
     {
-      "titulo": "Guardarropa completo",
-      "descripcion": "Consigue todas las piezas de armadura y mejóralas al nivel máximo con las grandes hadas.",
+      "titulo": "Nivel máximo",
+      "descripcion": "Mejora un conjunto completo de armadura hasta su último nivel.",
+      "guia": "Necesitas las cuatro grandes hadas despertadas: solo entonces se puede llegar al nivel final. Márcalo cuando las tres piezas de un mismo conjunto tengan cuatro estrellas.",
       "dificultad": 3,
       "tipo": "binario",
       "meta": 1,
       "oculto": false
     },
     {
-      "titulo": "Melena dorada",
-      "descripcion": "Derrota a un Lynel dorado.",
+      "titulo": "Melena plateada",
+      "descripcion": "Derrota a un Lynel plateado.",
+      "guia": "Son los más fuertes del juego base. Aparecen en partidas avanzadas, sobre todo en el Monte Muerte y la región de Tabanta. Márcalo al derrotar uno en combate directo.",
       "dificultad": 3,
       "tipo": "binario",
       "meta": 1,
@@ -233,6 +261,7 @@
     {
       "titulo": "El castillo por dentro",
       "descripcion": "Derrota a Ganon y termina la historia.",
+      "guia": "Márcalo cuando salgan los créditos. Si liberaste las cuatro bestias divinas, el combate es notablemente más corto.",
       "dificultad": 3,
       "tipo": "binario",
       "meta": 1,
@@ -241,6 +270,7 @@
     {
       "titulo": "Sin red",
       "descripcion": "Derrota a Ganon con tres corazones y sin comer durante el combate.",
+      "guia": "Este reto te lo impones tú: el juego no lo verifica. Sé honesto contigo mismo, que es de lo que se trata todo esto.",
       "dificultad": 3,
       "tipo": "binario",
       "meta": 1,
