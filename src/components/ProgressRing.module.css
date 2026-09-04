@@ -1,0 +1,24 @@
+.contenedor {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pista {
+  stroke: var(--humo);
+}
+
+.progreso {
+  stroke: var(--laton);
+  transition: stroke-dashoffset 700ms ease;
+}
+
+.etiqueta {
+  position: absolute;
+  font-family: var(--fuente-interfaz);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--papel);
+}

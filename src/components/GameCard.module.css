@@ -1,0 +1,61 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--niebla);
+  border: 1px solid var(--humo);
+  border-radius: var(--radio);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card:active {
+  background: var(--humo);
+}
+
+.portada {
+  aspect-ratio: 3 / 4;
+  background: var(--humo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portada img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sinPortada {
+  font-family: var(--fuente-titular);
+  font-size: var(--fs-4);
+  color: var(--apagado);
+}
+
+.pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px;
+}
+
+.info {
+  min-width: 0;
+}
+
+.titulo {
+  font-size: var(--fs-0);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.plataforma {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--fs--1);
+  color: var(--apagado);
+}

@@ -1,0 +1,57 @@
+.pagina {
+  padding: 16px 16px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cabecera h1 {
+  font-size: var(--fs-3);
+}
+
+.seccion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background: var(--niebla);
+  border: 1px solid var(--humo);
+  border-radius: var(--radio);
+}
+
+.tituloSeccion {
+  font-size: var(--fs-1);
+}
+
+.descripcion {
+  color: var(--apagado);
+  font-size: var(--fs--1);
+}
+
+.boton {
+  align-self: flex-start;
+  min-height: var(--toque-min);
+  display: inline-flex;
+  align-items: center;
+  padding: 0 18px;
+  background: var(--laton);
+  color: var(--tinta);
+  border: none;
+  border-radius: var(--radio);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton:disabled {
+  opacity: 0.6;
+}
+
+.mensaje {
+  color: var(--laton);
+  font-size: var(--fs--1);
+}
+
+.error {
+  color: var(--sangre);
+  font-size: var(--fs--1);
+}

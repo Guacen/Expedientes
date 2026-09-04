@@ -1,0 +1,81 @@
+.pagina {
+  padding: 16px 16px 32px;
+}
+
+.cabecera h1 {
+  font-size: var(--fs-2);
+  margin-bottom: 16px;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--fs--1);
+  color: var(--apagado);
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  min-height: var(--toque-min);
+  padding: 8px 10px;
+  background: var(--niebla);
+  border: 1px solid var(--humo);
+  border-radius: var(--radio);
+  color: var(--papel);
+  font-size: var(--fs-0);
+}
+
+.campo textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.acciones {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.cancelar,
+.guardar {
+  flex: 1;
+  min-height: var(--toque-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radio);
+  font-weight: 600;
+  font-size: var(--fs-0);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+.cancelar {
+  background: transparent;
+  border: 1px solid var(--humo);
+  color: var(--papel);
+}
+
+.guardar {
+  background: var(--laton);
+  color: var(--tinta);
+}
+
+.guardar:disabled {
+  opacity: 0.6;
+}
