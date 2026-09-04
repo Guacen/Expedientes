@@ -3,7 +3,10 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
-  base: '/expedientes/',
+  // Ruta relativa: la app funciona sirviéndose desde cualquier subruta de
+  // GitHub Pages sin depender de que coincida exactamente con el nombre del
+  // repositorio.
+  base: './',
   plugins: [
     react(),
     VitePWA({
