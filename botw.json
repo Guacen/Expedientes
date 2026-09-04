@@ -1,0 +1,250 @@
+{
+  "version": 1,
+  "juego": {
+    "titulo": "The Legend of Zelda: Breath of the Wild",
+    "plataforma": "Switch",
+    "estado": "backlog"
+  },
+  "trofeos": [
+    {
+      "titulo": "Abre los ojos",
+      "descripcion": "Sal del Santuario de la Resurrección y pisa la Gran Meseta por primera vez.",
+      "dificultad": 1,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "La primera puerta naranja",
+      "descripcion": "Completa tu primer santuario y recibe su símbolo de superación.",
+      "dificultad": 1,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "Ojos en el cielo",
+      "descripcion": "Activa tu primera torre Sheikah y descubre una región del mapa.",
+      "dificultad": 1,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "Caída controlada",
+      "descripcion": "Consigue la paravela y baja de la Gran Meseta por tu cuenta.",
+      "dificultad": 1,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "Algo caliente",
+      "descripcion": "Cocina tu primer platillo en una olla.",
+      "dificultad": 1,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "Un nombre para el caballo",
+      "descripcion": "Doma un caballo salvaje y regístralo en un establo.",
+      "dificultad": 1,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "Lo que quedó de ti",
+      "descripcion": "Recupera tu primer recuerdo.",
+      "dificultad": 1,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "Techo y conversación",
+      "descripcion": "Llega a Kakariko y habla con Impa.",
+      "dificultad": 1,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "Trabajo de campo",
+      "descripcion": "Completa 15 santuarios.",
+      "dificultad": 1,
+      "tipo": "contador",
+      "meta": 15,
+      "oculto": false
+    },
+    {
+      "titulo": "Fauna y flora",
+      "descripcion": "Registra 100 entradas en el compendio de Hyrule.",
+      "dificultad": 1,
+      "tipo": "contador",
+      "meta": 100,
+      "oculto": false
+    },
+    {
+      "titulo": "El agua vuelve a su cauce",
+      "descripcion": "Libera la Bestia Divina Vah Ruta.",
+      "dificultad": 2,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "La montaña deja de arder",
+      "descripcion": "Libera la Bestia Divina Vah Rudania.",
+      "dificultad": 2,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "El cielo se despeja",
+      "descripcion": "Libera la Bestia Divina Vah Medoh.",
+      "dificultad": 2,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "La tormenta se apaga",
+      "descripcion": "Libera la Bestia Divina Vah Naboris.",
+      "dificultad": 2,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "La espada que sella las tinieblas",
+      "descripcion": "Retira la Espada Maestra de su pedestal en el Bosque Korok.",
+      "dificultad": 2,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "Cartografía completa",
+      "descripcion": "Activa las 15 torres Sheikah.",
+      "dificultad": 2,
+      "tipo": "contador",
+      "meta": 15,
+      "oculto": false
+    },
+    {
+      "titulo": "Cincuenta puertas",
+      "descripcion": "Completa 50 santuarios.",
+      "dificultad": 2,
+      "tipo": "contador",
+      "meta": 50,
+      "oculto": false
+    },
+    {
+      "titulo": "Cien años después",
+      "descripcion": "Recupera los 18 recuerdos, incluido el que nadie te señala.",
+      "dificultad": 2,
+      "tipo": "contador",
+      "meta": 18,
+      "oculto": false
+    },
+    {
+      "titulo": "Camino conocido",
+      "descripcion": "Visita los 15 establos del reino.",
+      "dificultad": 2,
+      "tipo": "contador",
+      "meta": 15,
+      "oculto": false
+    },
+    {
+      "titulo": "Desnudo en la isla",
+      "descripcion": "Supera la prueba de la isla del este sin el equipo que traías.",
+      "dificultad": 2,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "El laberinto del norte",
+      "descripcion": "Resuelve los tres laberintos antiguos.",
+      "dificultad": 2,
+      "tipo": "contador",
+      "meta": 3,
+      "oculto": false
+    },
+    {
+      "titulo": "Cuerpo entero",
+      "descripcion": "Alcanza 13 corazones y 3 ruedas completas de aguante.",
+      "dificultad": 2,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "Ciento veinte",
+      "descripcion": "Completa todos los santuarios del mapa base.",
+      "dificultad": 3,
+      "tipo": "contador",
+      "meta": 120,
+      "oculto": false
+    },
+    {
+      "titulo": "El bosque quiere semillas",
+      "descripcion": "Entrega las 900 semillas korogu. Nadie te va a agradecer como esperabas.",
+      "dificultad": 3,
+      "tipo": "contador",
+      "meta": 900,
+      "oculto": false
+    },
+    {
+      "titulo": "Todo el papeleo",
+      "descripcion": "Completa las 76 misiones secundarias y las 42 pruebas de santuario.",
+      "dificultad": 3,
+      "tipo": "contador",
+      "meta": 118,
+      "oculto": false
+    },
+    {
+      "titulo": "Catálogo cerrado",
+      "descripcion": "Registra las 385 entradas del compendio de Hyrule.",
+      "dificultad": 3,
+      "tipo": "contador",
+      "meta": 385,
+      "oculto": false
+    },
+    {
+      "titulo": "Guardarropa completo",
+      "descripcion": "Consigue todas las piezas de armadura y mejóralas al nivel máximo con las grandes hadas.",
+      "dificultad": 3,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "Melena dorada",
+      "descripcion": "Derrota a un Lynel dorado.",
+      "dificultad": 3,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "El castillo por dentro",
+      "descripcion": "Derrota a Ganon y termina la historia.",
+      "dificultad": 3,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": false
+    },
+    {
+      "titulo": "Sin red",
+      "descripcion": "Derrota a Ganon con tres corazones y sin comer durante el combate.",
+      "dificultad": 3,
+      "tipo": "binario",
+      "meta": 1,
+      "oculto": true
+    }
+  ]
+}
