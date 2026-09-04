@@ -1,5 +1,14 @@
 import { type ChangeEvent, useState } from 'react';
-import { exportarDatos, importarDatos, validarRespaldo, type RespaldoJSON } from '../db';
+import { useNavigate } from 'react-router-dom';
+import {
+  exportarDatos,
+  importarDatos,
+  importarPlantilla,
+  validarRespaldo,
+  type RespaldoJSON,
+} from '../db';
+import { validarPlantilla } from '../domain/catalogo';
+import type { PlantillaCatalogo } from '../types';
 import ConfirmDialog from '../components/ConfirmDialog';
 import styles from './Settings.module.css';
 
@@ -9,11 +18,17 @@ function nombreArchivo(): string {
 }
 
 export default function Settings() {
+  const navigate = useNavigate();
   const [pendiente, setPendiente] = useState<RespaldoJSON | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [mensaje, setMensaje] = useState<string | null>(null);
   const [exportando, setExportando] = useState(false);
   const [importando, setImportando] = useState(false);
+
+  const [textoPlantilla, setTextoPlantilla] = useState('');
+  const [plantillaPendiente, setPlantillaPendiente] = useState<PlantillaCatalogo | null>(null);
+  const [errorPlantilla, setErrorPlantilla] = useState<string | null>(null);
+  const [importandoPlantilla, setImportandoPlantilla] = useState(false);
 
   async function exportar() {
     setExportando(true);
@@ -70,6 +85,34 @@ export default function Settings() {
     }
   }
 
+  function validarYPrepararPlantilla() {
+    setErrorPlantilla(null);
+    try {
+      const json = JSON.parse(textoPlantilla);
+      const resultado = validarPlantilla(json);
+      if (!resultado.valida) {
+        setErrorPlantilla(resultado.error);
+        return;
+      }
+      setPlantillaPendiente(resultado.plantilla);
+    } catch {
+      setErrorPlantilla('Eso no es un JSON válido.');
+    }
+  }
+
+  async function confirmarImportacionPlantilla() {
+    if (!plantillaPendiente) return;
+    setImportandoPlantilla(true);
+    try {
+      const juego = await importarPlantilla(plantillaPendiente);
+      setPlantillaPendiente(null);
+      setTextoPlantilla('');
+      navigate(`/juegos/${juego.id}`);
+    } finally {
+      setImportandoPlantilla(false);
+    }
+  }
+
   return (
     <div className={styles.pagina}>
       <header className={styles.cabecera}>
@@ -102,6 +145,33 @@ export default function Settings() {
         </label>
       </section>
 
+      <section className={styles.seccion}>
+        <h2 className={styles.tituloSeccion}>Importar plantilla desde texto</h2>
+        <p className={styles.descripcion}>
+          Pega el JSON de una plantilla del catálogo. Se valida, te muestro un resumen y
+          creo el juego con todos sus trofeos — sin necesidad de desplegar nada nuevo.
+        </p>
+        <textarea
+          className={styles.textarea}
+          rows={6}
+          placeholder='{ "version": 1, "juego": { ... }, "trofeos": [ ... ] }'
+          value={textoPlantilla}
+          onChange={(evento) => {
+            setTextoPlantilla(evento.target.value);
+            setErrorPlantilla(null);
+          }}
+        />
+        {errorPlantilla && <p className={styles.error}>{errorPlantilla}</p>}
+        <button
+          type="button"
+          className={styles.boton}
+          onClick={validarYPrepararPlantilla}
+          disabled={!textoPlantilla.trim()}
+        >
+          Validar e importar
+        </button>
+      </section>
+
       <ConfirmDialog
         abierto={pendiente !== null}
         titulo="Confirmar importación"
@@ -114,6 +184,19 @@ export default function Settings() {
         peligroso
         onConfirmar={confirmarImportacion}
         onCancelar={() => setPendiente(null)}
+      />
+
+      <ConfirmDialog
+        abierto={plantillaPendiente !== null}
+        titulo="Importar plantilla"
+        mensaje={
+          plantillaPendiente
+            ? `Se creará "${plantillaPendiente.juego.titulo}" (${plantillaPendiente.juego.plataforma}) con ${plantillaPendiente.trofeos.length} trofeos y su Expediente Cerrado.`
+            : ''
+        }
+        textoConfirmar={importandoPlantilla ? 'Importando…' : 'Importar'}
+        onConfirmar={confirmarImportacionPlantilla}
+        onCancelar={() => setPlantillaPendiente(null)}
       />
     </div>
   );

@@ -1,5 +1,5 @@
 import Dexie, { type Table } from 'dexie';
-import type { Game, Trophy } from '../types';
+import type { Game, PlantillaCatalogo, Trophy } from '../types';
 import { alternarBinario, conNuevoValor, recalcularExpediente } from '../domain/progreso';
 
 class ExpedientesDB extends Dexie {
@@ -143,6 +143,22 @@ export async function recalcularExpedienteDeJuego(gameId: string): Promise<void>
   ) {
     await db.trophies.put(recalculado);
   }
+}
+
+// --- Catálogo ---------------------------------------------------------------
+
+/**
+ * Crea un juego y todos sus trofeos a partir de una plantilla del catálogo,
+ * reutilizando crearJuego/crearTrofeo tal cual — no hay lógica de progreso
+ * especial para lo importado: es como si el usuario los hubiera cargado uno
+ * por uno a mano.
+ */
+export async function importarPlantilla(plantilla: PlantillaCatalogo): Promise<Game> {
+  const juego = await crearJuego({ ...plantilla.juego, horas: 0 });
+  for (const [orden, trofeo] of plantilla.trofeos.entries()) {
+    await crearTrofeo({ gameId: juego.id, orden, ...trofeo });
+  }
+  return juego;
 }
 
 // --- Respaldo -------------------------------------------------------------
